@@ -1,0 +1,142 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+}
+/* navbar section */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #0b0a0a;
+    color: rgb(236, 153, 21);
+}
+
+nav a {
+    color: rgb(236, 153, 21);
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 20px;
+}
+nav .content1{
+    font-size: 30px;
+}
+
+nav .content2 a:hover {
+    text-decoration: underline;
+    
+}
+
+
+.welcome {
+    position: relative;
+    background-image: url('../img/d.jpg');
+    background-size: cover;
+    background-position: center;
+    height:70vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 20px;
+}
+
+.welcome-overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    text-align: center;
+    height: 24%;
+    border-radius:15px;
+    box-shadow: #333; 
+}
+
+.enter a {
+    color: white;
+    background-color: #ae1010;
+    padding: 10px 20px;
+    margin: 15px;
+    margin-top:30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.enter a:hover {
+    background-color: #bf5d12;
+}
+
+/* Content section */
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 40vh; 
+    background-color: rgb(164, 159, 159);
+    box-shadow:gray;
+    border-radius:5px;
+    margin: 15px;
+
+}
+
+.shopcontent {
+    width: 50%;
+    font-size: 1.1em;
+    
+    align-self:center;
+    margin-right: 60px;
+}
+.shopcontent h1{
+    color:orange;
+}
+
+.shopimage img {
+    max-width: 100%;
+    width:90vh;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Item details section */
+.itemdetails {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; 
+    padding: 20px;
+    height: 30vh; 
+}
+
+.item {
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+    background-color: #f9f9f9; 
+    padding: 15px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item img {
+    max-width: 100%;
+    height: 80%; 
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+.item p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
