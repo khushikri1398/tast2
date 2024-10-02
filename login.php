@@ -1,50 +1,72 @@
-<?php
-include 'includes/header.php';
+<!DOCTYPE html>
+<html lang="en">
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script/tailwind.js"></script>
+    <title>Login</title>
+</head>
 
-    $sql = "SELECT * FROM users WHERE email='$email' ";
-    $result =$conn->query($sql);
+<body class="bg-gray-100 flex flex-col min-h-screen">
+<header class="bg-blue-600 text-white p-4 px-6 flex flex-col md:flex-row justify-between items-center">
+    <h1 class="text-xl font-bold mb-4 md:mb-0">Expense Tracker</h1>
+    <nav class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+        <a class="nav-link text-white hover:text-gray-200" href="index1.php">Home</a>
+        <a class="nav-link text-white hover:text-gray-200" href="signup.php">Signup</a>
+        <a class="nav-link text-white hover:text-gray-200" href="login.php">Login</a>
+    </nav>
+</header>
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['email'] = $user['email'];
-            header("Location: dashboard.php");
-            exit;
-        } else {
-            $error = "Invalid password";
-        }
-    } else {
-        $error = "User not found";
-    }
-}
-?> **/
-<div class="relative bg-cover bg-center h-full flex items-center justify-center text-white" style="background-image: url('img/bg.jpg');">
-<div class="flex items-center justify-between w-full max-w-5xl bg-black/30  p-6 rounded-lg ">
-        <div class="w-1/2 h-auto">
-            <img src="img/ln.jpg" class="w-full h-full object-cover rounded-lg">
-        </div>
-        <div class="w-1/2 ml-10">
-            <h2 class="text-4xl mb-6 text-center text-white font-bold py-4 hover:text-black">Login</h2>
-            <form class="text-black" action="login.php" method="post">
-                <input type="email" name="email" placeholder="Email" class="w-full p-2 mb-3 bg-white border border-black text-black rounded" required>
-                <input type="password" name="password" placeholder="Password" class="w-full p-2 mb-3 bg-white border border-black text-black rounded" required>
-                <button type="submit" class="w-full bg-gray-600 hover:bg-red-700 text-white p-2 rounded transition duration-300">Login</button>
-              
-            </form>
-            <?php if (isset($error)): ?>
-                <p class="text-red-500 text-center mt-2"><?php echo $error; ?></p>
-            <?php endif; ?>
-            <p class="mt-4 text-center text-black">Don't have an account? <a href="signup.php" class=" m-3 p-3 text-white hover:text-white hover:bg-red-700 rounded">Sign Up</a><a href="index1.php" class=" m-3 p-3 text-white hover:bg-red-700 rounded">Home</a></p>
+<main class="flex-grow flex items-center justify-center">
+    <div class="w-full max-w-sm bg-white rounded-lg shadow-md p-8">
+        <h1 class="text-2xl font-bold mb-4 text-center text-green-600">Login</h1>
+        <form action="" method="POST">
+            <div class="space-y-4">
+                <input type="text" name="username" class="w-full px-4 py-2 border-2 border-violet-300 rounded-md" placeholder="Enter your Email Address" required>
+                <input type="password" name="password" class="w-full px-4 py-2 border-2 border-violet-300 rounded-md" placeholder="Password" required>
+                <div class="text-right">
+                    <a href="#" class="text-sm text-blue-500 hover:underline" onclick="message()">Forget Password?</a>
+                </div>
+                <input type="submit" name="login" value="Login" class="w-full bg-green-500 text-white text-md px-4 py-2 rounded-md cursor-pointer hover:bg-green-600">
+            </div>
+        </form>
+        <div class="mt-4 text-center">
+            <span class="text-gray-600">New Member?</span>
+            <a href="signup.php" class="text-blue-500 hover:underline">Signup Here</a>
         </div>
     </div>
+</main>
 
-</div> 
+<script>
+    function message() {
+        alert("Remember your password at least.");
+    }
+</script>
+
+<?php
+include("includes/db.php");
+session_start(); // Start the session
+
+if (isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']); // Sanitize input
+    $pwd = mysqli_real_escape_string($conn, $_POST['password']); // Sanitize input
+
+    // It's better to use prepared statements for security
+    $query = "SELECT * FROM signup WHERE email='$username' AND pass='$pwd'";
+    $data = mysqli_query($conn, $query);
+
+    $total = mysqli_num_rows($data);
+    if ($total == 1) {
+        $_SESSION['email'] = $username;
+        echo "<script>alert('Login success.');</script>";
+        header('Location:dashboard.php');
+        exit(); // Always use exit after a header redirect to stop execution
+    } else {
+        echo "<script>alert('Login failed.');</script>";
+    }
+}
+?>
 </body>
 
 </html>
