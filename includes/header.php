@@ -1,5 +1,5 @@
 <?php 
-sessio_start();
+session_start();
     'includes/db.php';
 ?>
 <!DOCTYPE html>
