@@ -58,7 +58,7 @@
 <footer>
     <div class="flex flex-col w-full h-fit bg-[#374151] text-[#e5e7eb] px-6 md:px-14 py-10 mt-5">
         <div class="flex flex-col md:flex-row m-1">
-            <!-- Logo and title section -->
+            <!-- Logo and title section ----->
             <div class="flex flex-col gap-2 justify-center md:w-[35%] w-full">
                 <div class="flex items-center gap-4">
                     <img class="bg-white border border-white shadow-2xl rounded-full" src="img/back.png" width="100" alt="Logo">
